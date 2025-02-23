@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday</title>
+    <style>
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            color: black;
+            border: none;
+            padding: 5px 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border-radius: 5px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        }
+        .close-btn:hover {
+            background: darkred;
+        }
+        
+        body {
+            text-align: center;
+            background-color: #ffebcd;
+            font-family: Arial, sans-serif;
+            overflow: hidden;
+            position: relative;
+        }
+        h1 {
+            color: #ff4500;
+            margin-top: 50px;
+        }
+        h2 {
+            color: #ff4500;
+            margin: 5px 0 20px;
+        }
+        .balloon {
+            position: absolute;
+            bottom: -100px;
+            width: 30px;
+            height: 40px;
+            background: red;
+            border-radius: 50%;
+            animation: float 6s linear infinite;
+        }
+        .balloon::before {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            width: 2px;
+            height: 50px;
+            background: black;
+        }
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); opacity: 1; }
+            100% { transform: translateY(-800px) translateX(30px); opacity: 0; }
+        }
+        .cake {
+            position: relative;
+            margin: 77px auto 20px;
+            width: 220px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            z-index: 2;
+        }
+        .layer {
+            background: white;
+            border: 3px solid #d2691e;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            position: relative;
+            border-radius: 10px;
+        }
+        .layer-bottom {
+            width: 200px;
+            height: 60px;
+        }
+        .layer-middle {
+            width: 150px;
+            height: 50px;
+            margin-top: -10px;
+        }
+        .layer-top {
+            width: 100px;
+            height: 40px;
+            margin-top: -10px;
+        }
+        .candle {
+            width: 10px;
+            height: 40px;
+            background: red;
+            position: absolute;
+            top: -45px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 3px;
+        }
+        .flame {
+            width: 15px;
+            height: 20px;
+            background: orange;
+            position: absolute;
+            top: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-radius: 50%;
+            animation: flicker 1s infinite alternate;
+        }
+        @keyframes flicker {
+            0% { opacity: 1; transform: scale(1); }
+            100% { opacity: 0.7; transform: scale(1.1); }
+        }
+        .card-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin: 20px auto;
+            width: 60vw;
+            z-index: 2;
+        }
+        .card {
+            width: 100%;
+            height: 40vh;
+            background: #8B0000;
+            border: 2px solid #ff4500;
+            cursor: pointer;
+            box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.3);
+            transition: transform 0.3s;
+            position: relative;
+        }
+        .card-lid {
+            width: 0;
+            height: 0;
+            border-left: 30vw solid transparent;
+            border-right: 30vw solid transparent;
+            border-top: 20vh solid #5B0000;
+            position: absolute;
+            top: 0;
+            left: 0;
+            transform-origin: top;
+            transition: transform 0.5s ease-in-out;
+        }
+        .card.open .card-lid {
+            transform: rotateX(180deg);
+        }
+        .paper {
+            display: none;
+            width: 90%;
+            height: 73vh;
+            background: rgba(255, 255, 255, 0.5);
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 0 10px rgba(0,0,0,0.3);
+            text-align: left;
+            padding: 20px;
+            font-size: 18px;
+            font-weight: bold;
+            line-height: 1.5;
+        }
+        .paper p {
+            text-indent: 40px;
+        }
+        .paper p:last-child {
+            text-align: right;
+        }
+        .card.open + .paper {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Birthday</h1>
+    <h2>vphuongg cutes1tg</h2>
+    <div class="cake">
+        <div class="candle">
+            <div class="flame"></div>
+        </div>
+        <div class="layer layer-top"></div>
+        <div class="layer layer-middle"></div>
+        <div class="layer layer-bottom"></div>
+    </div>
+    <div class="card-container">
+        <div class="card" onclick="openCard()">
+            <div class="card-lid"></div>
+        </div>
+        <div class="paper" id="paper">
+            <button class="close-btn" onclick="closePaper()">X</button>
+            <p>Gửi Vy Phương,<br>
+            Nay là 24/2, sinh nhật của người dễ thương xinh đẹp nhất trên đời. Vậy là mình đã biết nhau được 126 ngày, 101 ngày set love với nhau trong liên quân, có chuỗi 109 tiktok và là em bé của anh được 55 ngày. Chúc bé yêu của anh tuổi mới xinh hơn, giỏi hơn, NGỦ SỚM HƠN và YÊU ANH BP HƠN. Dạo này mình có làm vợ buồn, nên mình xin lỗi vợ nhiều, vợ kiên nhẫn với anh để từ từ mình sẽ chứng minh cho vợ thấy là mình hiểu vợ và yêu vợ nhường nào. Hi vọng đôi mình sẽ ở bên nhau lâu hơn nữa. Hi, mình ngu văn nên mình viết hơi ấy ấy ạ.</p>
+            <p>Nói chung là, mình yêu Vy Phương. Anh yêu em siêu siêu nhiều luôn, mãi là em bé của anh nha.</p>
+            <p>Bảo Phúc<br>ANH YÊU EM</p>
+        </div>
+    </div>
+    <script>
+        function openCard() {
+            let card = document.querySelector(".card");
+            let paper = document.getElementById("paper");
+
+            card.classList.toggle("open");
+
+            if (card.classList.contains("open")) {
+                paper.style.display = "block";
+            }
+        }
+
+        function closePaper() {
+            let paper = document.getElementById("paper");
+            let card = document.querySelector(".card");
+
+            paper.style.display = "none";
+            card.classList.remove("open");
+        }
+
+        function createBalloons() {
+            for (let i = 0; i < 10; i++) {
+                let balloon = document.createElement("div");
+                balloon.className = "balloon";
+                balloon.style.left = Math.random() * 100 + "vw";
+                balloon.style.animationDuration = (Math.random() * 3 + 3) + "s";
+                document.body.appendChild(balloon);
+            }
+        }
+        createBalloons();
+    </script>
+</body>
+</html>
